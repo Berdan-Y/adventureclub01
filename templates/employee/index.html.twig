@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Docent Home{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <p class="fs-1">Welkom {{ app.user.fname }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="fs-6">
+                    Welkom op de docenten pagina.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="fs-6">
+                    Jij geeft les in {{ app.user.master }}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="h2">Je lessen</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Vak</th>
+                            <th scope="col">Tijd</th>
+                            <th scope="col">Student</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lesson in lessons %}
+                            <tr>
+                                <th scope="row">{{ lesson.subject }}</th>
+                                <td>{{ lesson.date|date('d-m-Y H:i:s') }}</td>
+                                {# <td>{{ lesson. }}</td> #}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-success" href="{{ path('app_member_insert') }}">Verhaal toevoegen</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

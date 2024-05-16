@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Member Home{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="fs-6">
+                    Welkom op de lessen pagina.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="h2">Jouw lessen</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Vak</th>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Docent</th>
+                        <th scope="col">Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lesson in lessons %}
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><a class="btn btn-warning" href="{{ path('app_member_update', {'id': lesson.id}) }}">Update</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-success" href="{{ path('app_member_lesson_insert') }}">Les toevoegen</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

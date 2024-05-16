@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medewerkers{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <p class="fs-1">Welkom {{ app.user.fname }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="fs-6">
+                    Hier kun je alle medewerkers zien.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <p class="h2">Alle medewerkers</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Naam</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">iban</th>
+                        <th scope="col">baan</th>
+                        <th scope="col">Verwijderen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in employees %}
+                            <tr>
+                                <th scope="row">{{ employee.fname }}</th>
+                                <td>{{ employee.email }}</td>
+                                <td>{{ employee.iban }}</td>
+                                <td>{{ employee.master }}</td>
+                                <td><a class="btn btn-danger" href="{{ path('app_admin_delete_employees', {'id': employee.id}) }}">Verwijderen</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-success" href="{{ path('app_admin_add_employees') }}">Medewerker toevoegen</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

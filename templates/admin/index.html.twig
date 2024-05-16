@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Home{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <p class="fs-1">Welkom {{ app.user.fname }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="fs-6">
+                    Welkom op de admin pagina.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <p class="h2">Alle verhalen</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Titel</th>
+                        <th scope="col">Beschrijving</th>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Wie</th>
+                        <th scope="col">Verwijderen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for story in stories %}
+                            <tr>
+                                <th scope="row">{{ story.title }}</th>
+                                <td>{{ story.description }}</td>
+                                <td>{{ story.date|date('d-m-Y') }}</td>
+                                <td>{{ story.user.fname }}</td>
+                                <td><a class="btn btn-danger" href="{{ path('app_admin_delete', {'id': story.id}) }}">Verwijderen</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
