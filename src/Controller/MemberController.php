@@ -7,7 +7,6 @@ use App\Entity\Story;
 use App\Entity\UserLesson;
 use App\Form\LessonType;
 use App\Form\StoryType;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -98,7 +97,7 @@ class MemberController extends AbstractController
         $form = $this->createForm(LessonType::class, $lesson);
 
         return $this->render('member/lessons.html.twig', [
-            'lessons' => $lessons,
+            'lessons' => $lesson,
         ]);
     }
 }
